@@ -3,6 +3,14 @@ import User from "../models/User";
 import Spot from "../models/Spot";
 
 export class SpotController {
+  static async index(req: Request, res: Response): Promise<any> {
+    const { tech } = req.query;
+
+    const spots = await Spot.find({ techs: tech });
+
+    return res.json(spots);
+  }
+
   static async store(req: Request, res: Response): Promise<any> {
     const { filename }: any = req.file;
 
